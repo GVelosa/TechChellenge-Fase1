@@ -27,7 +27,7 @@ Siga os passos abaixo para configurar o ambiente e executar o projeto localmente
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/GVelosa/TechChellenge-Fase1.git](https://github.com/GVelosa/TechChellenge-Fase1.git)
+    git clone https://github.com/GVelosa/TechChellenge-Fase1.git
     cd TechChellenge-Fase1
     ```
 
@@ -93,7 +93,7 @@ Verifica a saúde da API.
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/health](http://127.0.0.1:5000/api/v1/health)
+  http://127.0.0.1:5000/api/v1/health
 ```
 **Resposta:**
 ```json
@@ -109,7 +109,7 @@ Lista todos os livros.
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/books](http://127.0.0.1:5000/api/v1/books)
+  http://127.0.0.1:5000/api/v1/books
 ```
 **Resposta (mostrando o primeiro livro):**
 ```json
@@ -130,7 +130,7 @@ Retorna os detalhes de um livro específico.
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/books/10](http://127.0.0.1:5000/api/v1/books/10)
+  http://127.0.0.1:5000/api/v1/books/10
 ```
 **Resposta:**
 ```json
@@ -149,7 +149,7 @@ Lista todas as categorias únicas.
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/categories](http://127.0.0.1:5000/api/v1/categories)
+  http://127.0.0.1:5000/api/v1/categories
 ```
 **Resposta:**
 ```json
@@ -168,7 +168,7 @@ Busca livros por título e/ou categoria.
 
 **Chamada (título contendo "story"):**
 ```bash
-curl "[http://127.0.0.1:5000/api/v1/books/search?title=story](http://127.0.0.1:5000/api/v1/books/search?title=story)"
+  http://127.0.0.1:5000/api/v1/books/search?title=story
 ```
 
 #### `GET /api/v1/books/price-range`
@@ -176,7 +176,7 @@ Filtra livros dentro de uma faixa de preço.
 
 **Chamada (preço entre £20 e £25):**
 ```bash
-curl "[http://127.0.0.1:5000/api/v1/books/price-range?min=20&max=25](http://127.0.0.1:5000/api/v1/books/price-range?min=20&max=25)"
+  http://127.0.0.1:5000/api/v1/books/price-range?min=20&max=25
 ```
 
 #### `GET /api/v1/books/top-rated`
@@ -184,7 +184,7 @@ Lista os livros com avaliação máxima (5 estrelas).
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/books/top-rated](http://127.0.0.1:5000/api/v1/books/top-rated)
+  http://127.0.0.1:5000/api/v1/books/top-rated
 ```
 
 #### `GET /api/v1/stats/overview`
@@ -192,7 +192,7 @@ Retorna estatísticas gerais da coleção.
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/stats/overview](http://127.0.0.1:5000/api/v1/stats/overview)
+  http://127.0.0.1:5000/api/v1/stats/overview
 ```
 **Resposta:**
 ```json
@@ -214,7 +214,7 @@ Retorna estatísticas detalhadas por categoria.
 
 **Chamada:**
 ```bash
-curl [http://127.0.0.1:5000/api/v1/stats/categories](http://127.0.0.1:5000/api/v1/stats/categories)
+  http://127.0.0.1:5000/api/v1/stats/categories
 ```
 **Resposta (parcial):**
 ```json
