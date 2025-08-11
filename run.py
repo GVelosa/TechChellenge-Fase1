@@ -2,6 +2,8 @@ import os
 from api import create_app
 from scripts.database_setup import populate_database
 
+app = create_app()
+
 if __name__ == '__main__':
     if os.environ.get('WERKZEUG_RUN_MAIN') != 'true':
         while True:
@@ -23,6 +25,4 @@ if __name__ == '__main__':
                 print("Opção inválida. Por favor, digite 's' para sim ou 'n' para não.")
 
     print("Iniciando o servidor da API Flask...")
-    
-    app = create_app()
     app.run(debug=True)
