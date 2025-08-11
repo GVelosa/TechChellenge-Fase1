@@ -9,7 +9,7 @@ def scrape_all_books():
     """
     Função para fazer scraping de todos os livros e retornar uma lista de dicionários.
     """
-    print("Iniciando scraping de todos os livros de forma 'educada'...")
+    print("Iniciando scraping de todos os livros...")
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
     }

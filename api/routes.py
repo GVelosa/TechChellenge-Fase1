@@ -1,7 +1,6 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, abort
 from . import db
 from .models import Book
-from collections import Counter
 
 bp = Blueprint('api', __name__, url_prefix='/api/v1')
 
@@ -22,6 +21,7 @@ def health_check():
         'message': 'API is healthy and connected to the database',
         'book_count': book_count
     })
+
 
 @bp.route('/books', methods=['GET'])
 def get_all_books():
@@ -145,7 +145,6 @@ def get_books_by_price_range():
         max_price = float(request.args.get('max', float('inf')))
     except ValueError:
         return jsonify({'error': 'Invalid price format. Please use numbers.'}), 400
-
     query = Book.query.filter(Book.preco >= min_price).filter(Book.preco <= max_price)
     results = query.all()
     return jsonify([book.to_dict() for book in results])
@@ -161,13 +160,10 @@ def get_stats_overview():
         description: Um resumo com estatísticas gerais da coleção de livros.
     """
     total_livros = Book.query.count()
-
     preco_total = db.session.query(db.func.sum(Book.preco)).scalar()
     preco_medio = round(preco_total / total_livros, 2) if total_livros > 0 else 0
-
     ratings_query = db.session.query(Book.rating, db.func.count(Book.rating)).group_by(Book.rating).all()
     ratings_distribution = {rating: count for rating, count in ratings_query}
-    
     return jsonify({
         'total_de_livros': total_livros,
         'preco_medio': preco_medio,
@@ -189,7 +185,6 @@ def get_stats_by_category():
         db.func.count(Book.id), 
         db.func.avg(Book.preco)
     ).group_by(Book.categoria).all()
-    
     stats = {
         categoria: {
             'quantidade_de_livros': count,
@@ -198,3 +193,19 @@ def get_stats_by_category():
         for categoria, count, avg_price in stats_query
     }
     return jsonify(stats)
+
+@bp.app_errorhandler(400)
+def bad_request_error(error):
+    """Manipulador para erros de 'Bad Request' (400)."""
+    return jsonify({'error': 'Bad Request', 'message': error.description}), 400
+
+@bp.app_errorhandler(404)
+def not_found_error(error):
+    """Manipulador para erros de 'Not Found' (404)."""
+    return jsonify({'error': 'Not Found', 'message': 'O recurso solicitado não foi encontrado.'}), 404
+
+@bp.app_errorhandler(500)
+def internal_error(error):
+    """Manipulador para erros internos do servidor (500)."""
+    db.session.rollback()
+    return jsonify({'error': 'Internal Server Error', 'message': 'Ocorreu um erro inesperado no servidor.'}), 500

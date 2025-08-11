@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flasgger import Swagger
-from . import routes
+
 
 db = SQLAlchemy()
 
@@ -11,7 +11,7 @@ def create_app():
     app.config.from_object('api.config')
     db.init_app(app)
     Swagger(app)
-
+    
     @app.route('/')
     def index():
         html_content = """
@@ -58,6 +58,7 @@ def create_app():
         """
         return html_content
     
+    from . import routes
     app.register_blueprint(routes.bp)
 
     return app

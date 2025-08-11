@@ -1,4 +1,5 @@
 from . import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,7 +11,7 @@ class Book(db.Model):
     imagem_url = db.Column(db.String(255))
 
     def to_dict(self):
-        """Converte o objeto Book para um dicionário, útil para a resposta JSON."""
+        """Converte o objeto Book para um dicionário."""
         return {
             'id': self.id,
             'titulo': self.titulo,

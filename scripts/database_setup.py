@@ -1,8 +1,5 @@
 import sys
 import os
-from api import create_app, db
-from api.models import Book
-from scripts.scraper import scrape_all_books, save_to_csv
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -11,6 +8,9 @@ def populate_database():
     Executa o scraper e popula o banco de dados com os livros.
     Também salva uma cópia dos dados em CSV.
     """
+    from api import create_app, db
+    from api.models import Book
+    from scripts.scraper import scrape_all_books, save_to_csv
     books_data = scrape_all_books()
     save_to_csv(books_data)
     
