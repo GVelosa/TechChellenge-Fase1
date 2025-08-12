@@ -50,25 +50,19 @@ Siga os passos abaixo para configurar o ambiente e executar o projeto localmente
 
 ## Instruções para Execução
 
-Após a instalação, você precisa primeiro gerar os dados e depois iniciar os servidores da API e do Dashboard.
+Após a instalação, é possivel rodar o scraper e popular o ban.
 
-### 1. Gerar a Base de Dados
-
-Este é um passo único. Execute o script de setup para rodar o scraper e popular o banco de dados e o arquivo CSV.
-```bash
-python scripts/database_setup.py
-```
-Ao final, você verá a mensagem "Banco de dados populado com sucesso!" e os arquivos `data/books.db` e `data/books_data.csv` estarão criados.
-
-### 2. Iniciar a API RESTful
+### 1. Iniciar a API RESTful
 
 Em um terminal, execute o seguinte comando para iniciar o servidor Flask:
 ```bash
 python run.py
 ```
-A API estará disponível em `http://127.0.0.1:5000`.
+Após isso a menssagem: 'Deseja executar o web scraping para atualizar a base de dados? (s/n):' será exibida, caso queira executar o scraper digite 's' caso o banco de dados eo csv já estejam criados digite 'n' para pular essa etapa.
 
-### 3. Iniciar o Dashboard Interativo
+Após isso a API estará disponível em `http://127.0.0.1:5000`.
+
+### 2. Iniciar o Dashboard Interativo
 
 **Abra um novo terminal**, navegue até a pasta do projeto e ative o ambiente virtual novamente. Em seguida, execute:
 ```bash
@@ -78,9 +72,9 @@ O dashboard será aberto automaticamente no seu navegador, geralmente em `http:/
 
 ## Documentação da API
 
-### Acesso Rápido via Swagger UI
+### Acesso via Swagger UI
 
-A maneira mais fácil de explorar e testar todos os endpoints da API é através da documentação interativa gerada pelo Swagger UI. Com o servidor da API rodando, acesse:
+Uma das maneira mais fácil de explorar e testar todos os endpoints da API é através da documentação interativa gerada pelo Swagger UI. Com o servidor da API rodando, acesse:
 
 * **[http://127.0.0.1:5000/apidocs](http://127.0.0.1:5000/apidocs)**
 
@@ -229,4 +223,4 @@ Retorna estatísticas detalhadas por categoria.
   }
 }
 ```
-> 💡 **Dica:** Todas essas informações também podem ser exploradas de forma visual e interativa através do **Dashboard Streamlit**, disponível em `http://127.0.0.1:8501` quando o serviço está em execução.
+**Dica:** Todas essas informações também podem ser exploradas de forma visual e interativa através do **Dashboard Streamlit**.
